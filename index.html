@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Opbeat | Victory.js</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react-dom.min.js"></script>
+        <script src="https://npmcdn.com/victory@0.9.0/dist/victory.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+            const { VictoryChart, VictoryLine } = Victory
+
+            class App extends React.Component {
+                constructor(props) {
+                    super(props)
+                }
+
+                render() {
+                    return (
+                        <VictoryChart>
+                          <VictoryLine
+                            y={(data) => Math.sin(1.5 * Math.PI * data.x)} />
+                          <VictoryLine
+                            style={{data: {stroke: "#c33b33"}}}
+                            y={(data) => Math.cos(2 * Math.PI * data.x)} />
+                        </VictoryChart>
+
+                    );
+                }
+            }
+
+            ReactDOM.render(<App/>, document.getElementById('example'))
+        </script>
+    </body>
+</html>
+
