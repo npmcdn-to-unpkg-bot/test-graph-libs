@@ -29,9 +29,9 @@ class App extends React.Component {
         const { timestamp } = this.state
 
         const ticks = new Array(5).fill(1).map((n, i) => timestamp + i*5*60000)
-        const data1 = new Array(500).fill(1).map((n, i) => { return { x: i, y: i*2*(Math.random()) } })
-        const data2 = new Array(500).fill(1).map((n, i) => { return { x: i, y: i*2*(Math.random()) } })
-        const data3 = new Array(500).fill(1).map((n, i) => { return { x: i, y: i*2*(Math.random()) } })
+        const data1 = new Array(30).fill(1).map((n, i) => { return { x: i, y: i*2*(Math.random()) } })
+        const data2 = new Array(30).fill(1).map((n, i) => { return { x: i, y: i*2*(Math.random()) } })
+        const data3 = new Array(30).fill(1).map((n, i) => { return { x: i, y: i*2*(Math.random()) } })
 
         return (
             <svg width={800} height={400}>
@@ -49,9 +49,11 @@ class App extends React.Component {
                     }}
                     tickCount={3}
                     domain={[0, 1000]}
-                    tickFormat={formatPerformance} /> 
+                    tickFormat={formatPerformance}  
+                    events={[ { target: "grid", eventHandlers: { onMouseOver: event => console.log('event') } } ]} />
 
                 <VictoryArea 
+                    interpolation="natural"
                     style={{data: {fill: "teal", opacity: 0.3}}}
                     data={data1}/>
                 
@@ -61,7 +63,7 @@ class App extends React.Component {
 
                 <VictoryArea 
                     style={{data: {fill: "green", opacity: 0.3}}}
-                    events={[ { target: "data", eventHandlers: { onClick: () => { return [ { mutation: (props) => { return {style: Object.assign({}, props.style, {fill: "orange"})}; } }, { target: "labels", mutation: () => { return {text: "hey"}; } } ]; } } } ]}
+                    events={[ { target: "data", eventHandlers: { onClick: () => { return [ { mutation: (props) => { return {style: Object.assign({}, props.style, {fill: "orange"})}; } } ]; } } } ]}
                     data={data3}/>
             </svg>
 
