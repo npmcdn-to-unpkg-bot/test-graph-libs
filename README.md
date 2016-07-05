@@ -1,4 +1,4 @@
-# Victory.js for Opbeat
+# Graph libs for Opbeat
 
 ## Get Started
 
